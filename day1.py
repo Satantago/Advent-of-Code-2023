@@ -1,22 +1,33 @@
-def extract_calibration_value(line):
-    first_digit = next(char for char in line if char.isdigit())
-    last_digit = next(char for char in reversed(line) if char.isdigit())
+import re
 
-    calibration_value = int(first_digit + last_digit)
+def read_input(file_path):
+    with open(file_path) as file:
+        data = file.read().strip()
+    return data
 
-    return calibration_value
+def extract_numbers(lines):
+    return [re.findall("\d", line) for line in lines]
 
-def sum_calibration_values(file_path):
-    total_sum = 0
+def calibration_sum(numbers):
+    return sum(int(n[0] + n[-1]) for n in numbers)
 
-    with open(file_path, 'r') as file:
-        for line in file:
-            calibration_value = extract_calibration_value(line)
-            total_sum += calibration_value
+def perform_calibrations(data):
+    numbers = extract_numbers(data.split("\n"))
+    return calibration_sum(numbers)
 
-    return total_sum
+if __name__ == "__main__":
+    input_file_path = "input1.txt"
+    input_data = read_input(input_file_path)
 
-input_file_path = 'input.txt'
-result = sum_calibration_values(input_file_path)
+    result_part1 = perform_calibrations(input_data)
+    print("Part 1 Result:", result_part1)
 
-print(result)
+    replacement_dict = {"one": "one1one", "two": "two2two", "three": "three3three", 
+                        "four": "four4four", "five": "five5five", "six": "six6six", 
+                        "seven": "seven7seven", "eight": "eight8eight", "nine": "nine9nine"}
+    
+    for old_str, new_str in replacement_dict.items():
+        input_data = input_data.replace(old_str, new_str)
+
+    result_part2 = perform_calibrations(input_data)
+    print("Part 2 Result:", result_part2)
