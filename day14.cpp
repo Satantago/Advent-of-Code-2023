@@ -133,7 +133,8 @@ struct VectorWithIndex {
 ll solve2() {
     set<VectorWithIndex> set_cycles;
     VectorWithIndex v{inp, 0};
-
+    set_cycles.insert(v);
+    
     ll i = 1;
     vector<string> cur_cycle = cycle(inp);
     VectorWithIndex cur_cycle_ind{cur_cycle, i};
