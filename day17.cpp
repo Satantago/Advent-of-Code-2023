@@ -166,7 +166,6 @@ ll solve() {
                         }
                     }
                 }
-                
             }
         }
     }
@@ -179,8 +178,6 @@ ll solve() {
     }
     return res;
 }
-
-
 
 int main() {
     parse_input();
