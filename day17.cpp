@@ -28,7 +28,6 @@ void parse_input() {
     }
 
     for (string s: lines) {
-        // cout << s << endl;
         vector<int> intline;
         for (int i = 0; i < s.size(); i++)
             intline.push_back(int(s[i]) - int('0'));
